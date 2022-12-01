@@ -2,7 +2,7 @@
   ansible.builtin.yum:
     name:
       - postgresql
-      - postgresql15-server
+      - postgresql-server
       - postgresql-contrib
       - postgresql-libs
       - python3-psycopg2
@@ -14,11 +14,11 @@
   register: postgres_data
 
 - name: Initialize PostgreSQL
-  ansible.builtin.shell: "postgresql-15-setup initdb"
+  ansible.builtin.shell: "postgresql-setup initdb"
   when: not postgres_data.stat.exists
 
-- name: postgresql-15
+- name: postgresql
   ansible.builtin.service:
-    name: postgresql-15 
+    name: postgresql
     state: started
     enabled: yes
