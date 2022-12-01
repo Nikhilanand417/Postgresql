@@ -60,11 +60,7 @@
   become_user: postgres
   notify: restart postgres
 
-- name: "Add some dummy data to our database"
-  become: true
-  become_user: postgres
-  shell: psql {{ db_name }} < /tmp/dump.sql
-
   handlers:
     - name: restart postgres
-      service: name=postgresql state=restarted
+      service: name=postgresql 
+      state: restarted
